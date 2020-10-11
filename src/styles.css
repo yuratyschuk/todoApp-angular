@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+dialog {
+    border: none !important;
+}
+
+.mat-dialog-background .mat-dialog-container {
+    background-color: black;
+    border: 1px solid white;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}

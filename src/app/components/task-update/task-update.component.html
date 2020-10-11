@@ -1,0 +1,24 @@
+    <h2 mat-dialog-title>Update</h2>
+    <form #updateTodo="ngForm" (ngSubmit)="onSubmit(updateTodo)" novalidate>
+    <mat-dialog-content>
+        <label>Title </label>
+                    <input type="text" name="title" class="form-control" placeholder="Enter title" [ngModel]="task.title" required  ngModel/><br>
+        <label>Description </label>
+            <input type="text" name="description" class="form-control" placeholder="Enter description" [ngModel]="task.description" required ngModel/><br>
+        <label>Finish date </label> 
+        <input type="hidden" name="createDate" class="form-control" [ngModel]="task.createDate | date:'yyyy-MM-dd'"
+        (ngModelChange)="task.createDate = $event" required ngModel/><br>
+
+        <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="picker" placeholder="Choose another finish date"
+                   [min]="currentDate" (dateInput)="addEvent($event)" (dateChange)="addEvent($event)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker> 
+          </mat-form-field>
+      
+    </mat-dialog-content>
+    <mat-dialog-actions>
+    <button class="btn btn-orange">Update</button>  
+    <div class="cancel" mat-dialog-close>Close</div>         
+    </mat-dialog-actions>
+</form>

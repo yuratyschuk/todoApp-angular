@@ -1,0 +1,85 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<body>
+    <section>
+        <article>
+            <div class="project-controller" *ngIf="currentProject != undefined">
+                <span class="project-controller-header">{{currentProject.name}}
+          <i class="fa fa-user-plus" aria-hidden="true" (click)="shareTaskOpenModalDialog()"></i>
+        </span>
+            </div>
+            <table class="table borders" *ngIf="tasks !== undefined">
+                <tbody>
+                    <tr *ngFor="let task of tasks">
+                        <td>
+                            <i [ngClass]="task.active ? 'fa fa-circle-o' : 'fa fa-check'" aria-hidden="true" (click)="changeStatus(task.id)"></i>
+                        </td>
+                        <td (click)="openTaskInfo(task.id)" [ngClass]="task.active ? 'normal' : 'line'">{{task.title}}</td>
+                        <td><i class="fa fa-pencil-square-o " aria-hidden="true" (click)="onUpdate(task.id) "></i></td>
+                        <td>
+                            <div>
+                                <i class="fa fa-flag transparent" aria-hidden="true" *ngIf="task.priority == 0; else yellow"></i>
+                            </div>
+                            <div>
+                                <i class="fa fa-flag yellow" aria-hidden="true" *ngIf="task.priority == 1; else blue"></i>
+                            </div>
+                            <div>
+                                <i class="fa fa-flag blue" aria-hidden="true" *ngIf="task.priority == 2; else red"></i>
+                            </div>
+                            <div>
+                                <i class="fa fa-flag red" aria-hidden="true" *ngIf="task.priority == 3"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="copyTask(task)">
+                  <mat-icon>content_copy</mat-icon>
+                  <span>Copy</span>
+                </button>
+                                <button mat-menu-item [matMenuTriggerFor]="priorities">
+                  <mat-icon>voicemail</mat-icon>
+                  <span>Choose priority</span>
+                </button>
+                                <button mat-menu-item (click)="delete(task.id)">
+                  <mat-icon>delete_outline</mat-icon>
+                  <span>Delete</span>
+                </button>
+                                <button mat-menu-item [matMenuTriggerFor]="projects">
+                  <mat-icon>move_to_inbox</mat-icon>
+                  <span>Move to another project</span>
+                </button>
+                            </mat-menu>
+
+                            <mat-menu #projects="matMenu">
+
+                            </mat-menu>
+
+                            <mat-menu #priorities="matMenu">
+                                <span mat-menu-item (click)="setPriority(0, task.id)"><i class="fa fa-flag fa-2x transpatent"></i>None
+                  priority</span>
+                                <span mat-menu-item (click)="setPriority(1, task.id)"><i class="fa fa-flag fa-2x yellow"></i>Not
+                  essential</span>
+                                <span mat-menu-item (click)="setPriority(2, task.id)"> <i
+                    class="fa fa-flag fa-2x blue"></i>Essential</span>
+                                <span mat-menu-item (click)="setPriority(3, task.id)"><i class="fa fa-flag fa-2x red"></i>Very
+                  essential</span>
+                            </mat-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="showInputToCreateTask">
+                <form #toDo="ngForm" (ngSubmit)="saveTask(toDo)" novalidate>
+                    <input type="text" class="form-control" name="title" placeholder="Enter title" autofocus required ngModel><br>
+                    <button class="btn btn-orange">Create</button>
+                    <div class="cancel" (click)="changeTaskShowInput()">Cancel</div>
+                </form>
+            </div>
+            <i class="fa fa-plus fa-2x" (click)="createTaskShowInput()" *ngIf="!showInputToCreateTask && tasks !== undefined">
+        Add task</i>
+        </article>
+    </section>
+</body>

@@ -1,0 +1,11 @@
+<body>
+<form #toDo="ngForm" (ngSubmit)="onSubmit(toDo)" novalidate>
+    <label>Title </label>
+    <input type="text" name="title" placeholder="Enter title" required  ngModel/><br>
+    <label>Description </label>
+    <input type="text" name="description" placeholder="Enter description" required ngModel/><br>
+    <label>Finish date </label> 
+    <input type="date" name="finishDate" placeholder="Enter finish date" required ngModel/><br>
+    <button>Update</button>
+</form>
+</body>

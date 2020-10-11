@@ -1,0 +1,60 @@
+.sidenav {
+    height: 100%;
+    /* Full-height: remove this if you want "auto" height */
+    width: 250px;
+    /* Set the width of the sidebar */
+    position: fixed;
+    /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 0;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    left: 0;
+    background-color: #111;
+    /* Black */
+    padding-top: 20px;
+}
+
+
+/* The navigation menu links */
+
+.sidenav button {
+    /* padding: 6px 8px 6px 16px; */
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    width: 200px;
+    white-space: normal;
+}
+
+.sidenav button:hover {
+    background-color: unset;
+}
+
+.sidenav button:active {
+    background-color: unset;
+}
+
+.sidenav button:focus {
+    background-color: unset;
+}
+
+.sidenav {
+    z-index: 1;
+    box-shadow: 0 0 10px;
+}
+
+button {
+    pointer-events: none;
+}
+
+mat-expansion-panel {
+    background-color: #111;
+    width: 250px;
+}
+
+mat-panel-title {
+    color: #818181;
+    font-size: 20px;
+}
