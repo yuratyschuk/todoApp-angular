@@ -4,21 +4,21 @@ import {User} from 'src/app/user';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-export const TOKEN = 'token'
-export const AUTHENTICATED_USER = 'authenticaterUser'
+export const TOKEN = 'token';
+export const AUTHENTICATED_USER = 'authenticaterUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private baseUrl: String = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
-  authenticate(username, password) { 
+  authenticate(username, password) {
     return this.http.post<any>(
-      `${this.baseUrl}/authenticate`,{
+      `${this.baseUrl}/authenticate`, {
         username,
         password
       }).pipe(
@@ -31,23 +31,25 @@ export class AuthenticationService {
         )
       );
   }
+
   getAuthenticatedUser() {
-    return sessionStorage.getItem(AUTHENTICATED_USER)
+    return sessionStorage.getItem(AUTHENTICATED_USER);
   }
 
   getAuthenticatedToken() {
-    if(this.getAuthenticatedUser())
-      return sessionStorage.getItem(TOKEN)
+    if (this.getAuthenticatedUser()) {
+      return sessionStorage.getItem(TOKEN);
+    }
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(AUTHENTICATED_USER)
-    return !(user === null)
+    const user = sessionStorage.getItem(AUTHENTICATED_USER);
+    return !(user === null);
   }
 
   logout(){
-    sessionStorage.removeItem(AUTHENTICATED_USER)
-    sessionStorage.removeItem(TOKEN)
+    sessionStorage.removeItem(AUTHENTICATED_USER);
+    sessionStorage.removeItem(TOKEN);
   }
 
 }

@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Task} from 'src/task';
+import { Task} from 'src/app/task';
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private baseUrl = 'http://localhost:8080/task';
+  private baseUrl = 'http://localhost:8080/tasks';
 
   constructor(private http: HttpClient) { }
 
-  getTaskByProjectId(projectId: number): Observable<any> { 
-    return this.http.get(`${this.baseUrl}/taskList/${projectId}`);
+  getTaskByProjectId(projectId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/list/${projectId}`);
   }
 
-  getTaskById(taskId: number): Observable<any> { 
+  getTaskById(taskId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${taskId}`);
   }
 
@@ -24,24 +24,24 @@ export class TaskService {
     return this.http.get(`${this.baseUrl}/getAll`);
   }
 
-  changeTaskStatus(taskId: number): Observable<any> { 
+  changeTaskStatus(taskId: number): Observable<any> {
 
-    return this.http.put(`${this.baseUrl}/taskActive/${taskId}`, {});
+    return this.http.put(`${this.baseUrl}/active/${taskId}`, {});
   }
 
-  save(task: any, projectId: number) :Observable<any>{ 
-    return this.http.post(`${this.baseUrl}/taskSave/${projectId}`, task);
+  save(task: any, projectId: number) :Observable<any>{
+    return this.http.post(`${this.baseUrl}/save/${projectId}`, task);
   }
 
-  update(task: any, taskId: number, projectId: number): Observable<any> { 
-    return this.http.put(`${this.baseUrl}/taskUpdate/${taskId}/projects/${projectId}`, task);
+  update(task: any, taskId: number, projectId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/update/${taskId}/projects/${projectId}`, task);
   }
 
-  deleteById(taskId: number): Observable<any> { 
-    return this.http.delete(`${this.baseUrl}/taskDelete/${taskId}`);
+  deleteById(taskId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/delete/${taskId}`);
   }
 
-  updatePriority(priority: any, taskId: number): Observable<any> { 
+  updatePriority(priority: any, taskId: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/priority/${taskId}`, {}, {
       params: {
         'priority': priority

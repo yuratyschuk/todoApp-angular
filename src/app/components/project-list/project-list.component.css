@@ -58,3 +58,13 @@ mat-panel-title {
     color: #818181;
     font-size: 20px;
 }
+
+.btn-orange {
+  background-color: #a1320d;
+  color: #818181;
+  font-size: 15px;
+}
+
+.btn-orange:hover {
+  color: white;
+}

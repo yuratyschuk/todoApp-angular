@@ -1,17 +1,14 @@
    <h2 mat-dialog-title>Add project</h2>
-    
+
     <div class="add-project-form">
     <form #project="ngForm" (ngSubmit)="onSubmit(project)" novalidate>
     <mat-dialog-content>
         <label>Name</label><br>
-        <mat-form-field>
             <input type="text" name="name" class="form-control" placeholder="Enter project name" required ngModel>
-        </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button class="btn btn-orange" mat-dialog-close>Create</button>
+        <button class="btn btn-orange">Create</button>
         <div class="cancel" mat-dialog-close>Close</div>
     </mat-dialog-actions>
     </form>
     </div>
-    

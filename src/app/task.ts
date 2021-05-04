@@ -1,9 +1,11 @@
+import {Project} from './project';
+
 export class Task {
   id: number;
   title: string;
   description: string;
-  createDate: Date;
-  finishDate: Date;
+  createDate: string;
+  finishDate: string;
   active: boolean;
   priority: number;
 }

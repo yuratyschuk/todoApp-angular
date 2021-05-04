@@ -161,3 +161,9 @@ table td:nth-child(3):hover {
 mat-menu {
     color: black;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

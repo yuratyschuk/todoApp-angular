@@ -9,27 +9,27 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username: string = 'test';
-  password: string = 'test';
+  username = 'test';
+  password = 'test';
   invalidLogin: boolean;
-  errorMessage = 'Invalid Credentials'
+  errorMessage = 'Invalid Credentials';
 
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  handleAuthLogin() { 
+  handleAuthLogin(): void {
     this.authenticationService.authenticate(this.username, this.password).subscribe(
       data => {
-        console.log(data)
-        this.router.navigate(['project'])
-        this.invalidLogin = false      
+        console.log(data);
+        this.router.navigate(['project']);
+        this.invalidLogin = false;
       },
       error => {
-        console.log(error)
-        this.invalidLogin = true
+        console.log(error);
+        this.invalidLogin = true;
       }
-    )
+    );
   }
 }

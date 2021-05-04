@@ -1,16 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Project } from 'src/app/project';
-import { TaskService } from 'src/app/services/task/task.service';
-import { Task } from 'src/task';
-import { ProjectService } from 'src/app/services/project/project.service';
-import { SharedService } from 'src/app/services/sharedService/shared.service';
-import { Subscription } from 'rxjs';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { TaskUpdateComponent } from '../task-update/task-update.component';
-import { TaskSaveComponent } from '../task-save/task-save.component';
-import { TaskInfoComponent } from '../task-info/task-info.component';
-import { NgForm } from '@angular/forms';
-import { ProjectShareComponent } from '../project-share/project-share.component';
+import {Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
+import {Project} from 'src/app/project';
+import {TaskService} from 'src/app/services/task/task.service';
+import {Task} from 'src/app/task';
+import {ProjectService} from 'src/app/services/project/project.service';
+import {SharedService} from 'src/app/services/sharedService/shared.service';
+import {Subscription} from 'rxjs';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {TaskUpdateComponent} from '../task-update/task-update.component';
+import {TaskSaveComponent} from '../task-save/task-save.component';
+import {TaskInfoComponent} from '../task-info/task-info.component';
+import {NgForm} from '@angular/forms';
+import {ProjectShareComponent} from '../project-share/project-share.component';
 
 @Component({
   selector: 'app-task-list',
@@ -24,11 +24,12 @@ export class TaskListComponent implements OnInit {
   tasks: Task[];
   taskActive: Task;
   clickEventSubscription: Subscription;
-  showInputToCreateTask: boolean = false;
-  isShowSubMenu: boolean = false;
+  showInputToCreateTask = false;
+  isShowSubMenu = false;
+  projectList: Project[];
 
   constructor(private taskService: TaskService, private projectService: ProjectService,
-    private sharedService: SharedService, private matDialog: MatDialog) {
+              private sharedService: SharedService, private matDialog: MatDialog) {
 
   }
 
@@ -41,7 +42,6 @@ export class TaskListComponent implements OnInit {
   getParam() {
     this.sharedService.getClickEvent().subscribe((param: any) => {
       if (param !== undefined) {
-
         this.getTaskList(param);
         this.getProject(param);
       }
@@ -49,12 +49,14 @@ export class TaskListComponent implements OnInit {
   }
 
   getProject(projectId: number) {
-    this.projectService.getById(projectId).subscribe(
+    this.projectService.getAll().subscribe(
       data => {
-        this.currentProject = data;
+        this.projectList = data;
+        this.currentProject = this.projectList.find(project => project.id === projectId);
         console.log(data);
       }
-    ); error => console.log(error);
+    );
+    error => console.log(error);
   }
 
   getTaskList(projectId: number) {
@@ -64,22 +66,23 @@ export class TaskListComponent implements OnInit {
         console.log(data);
         this.tasks = data;
       }
-    ); error => console.log(error);
+    );
+    error => console.log(error);
 
   }
 
   changeStatus(taskId: number) {
+    const currentTask = this.tasks.find(task => task.id === taskId);
+    currentTask.active = !currentTask.active;
 
     console.log(taskId);
-
-
     this.taskService.changeTaskStatus(taskId).subscribe(
       data => {
         console.log(data);
         this.taskActive = data;
-        this.ngOnInit();
       }
-    ); error => console.log(error);
+    );
+    error => console.log(error);
 
 
   }
@@ -88,9 +91,10 @@ export class TaskListComponent implements OnInit {
     this.taskService.save(toDo.value, this.projectId).subscribe(
       data => {
         console.log(data);
-        this.ngOnInit();
+        this.tasks.push(data);
       }
-    ); error => console.log(error);
+    );
+    error => console.log(error);
     this.showInputToCreateTask = false;
   }
 
@@ -98,18 +102,18 @@ export class TaskListComponent implements OnInit {
   onUpdate(taskId: number) {
     if (this.matDialog.openDialogs.length === 0) {
       this.matDialog.open(TaskUpdateComponent, {
-        width: "600px",
-        height: "600px",
+        width: '600px',
+        height: '600px',
         autoFocus: true,
         panelClass: 'mat-dialog-background',
         data: {
           projectId: this.projectId,
-          taskId: taskId
+          taskId
         }
       }).afterClosed().subscribe(
         data => {
-          console.log(data);
-          this.ngOnInit();
+          const currentIndex = this.tasks.findIndex(task => task.id === data.id);
+          this.tasks[currentIndex] = data;
         }
       );
     }
@@ -119,74 +123,77 @@ export class TaskListComponent implements OnInit {
     if (this.matDialog.openDialogs.length === 0) {
       this.matDialog.open(TaskInfoComponent, {
         autoFocus: true,
-        width: "600px",
-        height: "600px",
+        width: '600px',
+        height: '600px',
         panelClass: 'mat-dialog-background',
         data: {
           projectId: this.projectId,
-          taskId: taskId
+          taskId
         }
       });
     }
   }
 
-  shareTaskOpenModalDialog() {
+  shareProjectOpenModalDialog() {
     if (this.matDialog.openDialogs.length === 0) {
       this.matDialog.open(ProjectShareComponent, {
         autoFocus: true,
-        width: "600px",
-        height: "600px",
+        width: '600px',
+        height: '600px',
         panelClass: 'mat-dialog-background',
         data: {
           projectId: this.projectId,
         }
-      })
+      });
     }
   }
 
   delete(taskId: number) {
-
     this.taskService.deleteById(taskId).subscribe(
       data => {
+        this.tasks = this.tasks.filter(task => task.id !== taskId);
         console.log(data);
-        this.ngOnInit();
       }
-    ); error => console.log(error);
+    );
+    error => console.log(error);
   }
 
   createTaskShowInput() {
     this.showInputToCreateTask = true;
   }
+
   changeTaskShowInput() {
     this.showInputToCreateTask = false;
   }
 
-
-  showSubMenu() {
-    this.isShowSubMenu = true;
-  }
-
   setPriority(priority: number, taskId: number) {
-
     this.taskService.updatePriority(priority, taskId).subscribe(
       data => {
+        const currentTask = this.tasks.find(task => task.id === taskId);
+        currentTask.priority = priority;
         console.log(data);
-        this.ngOnInit();
       }
-    ); error => console.log(error);
+    );
+    error => console.log(error);
 
   }
 
   copyTask(task: Task) {
-
     task.id = null;
-    console.log(task.id);
     this.taskService.save(task, this.projectId).subscribe(
       data => {
         console.log(data);
+        this.tasks.push(data);
+      }
+    );
+    error => console.log(error);
+  }
+
+  moveTaskToAnotherProject(currentTask: Task, projectId: number) {
+    this.taskService.update(currentTask, currentTask.id, projectId).subscribe(
+      () => {
+        this.tasks = this.tasks.filter(task => task.id !== currentTask.id);
       }
     ); error => console.log(error);
-
-    this.ngOnInit();
   }
 }

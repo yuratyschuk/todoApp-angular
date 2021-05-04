@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class ProjectService {
 
-  private baseUrl = 'http://localhost:8080/project';
+  private baseUrl = 'http://localhost:8080/projects';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -16,8 +16,8 @@ export class ProjectService {
     return this.httpClient.get(`${this.baseUrl}/${projectId}`);
   }
 
-  save(project: object): Observable<object> {
-    return this.httpClient.post(`${this.baseUrl}/create`, project);
+  save(project: object): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/save`, project);
   }
 
   update(projectId: number, project: object): Observable<object> {
@@ -29,22 +29,22 @@ export class ProjectService {
   }
 
   getProjectListByUsername(): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/projectList`);
+    return this.httpClient.get(`${this.baseUrl}/list`);
   }
 
-  getAll(): Observable<any> { 
-    return this.httpClient.get(`${this.baseUrl}/getAll`)
+  getAll(): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/getAll`);
   }
 
-  share(credentials: string, projectId: number): Observable<any> { 
+  share(credentials: string, projectId: number): Observable<any> {
     const params = new URLSearchParams();
     params.append('credentials', credentials);
-    return this.httpClient.post(`${this.baseUrl}/share/${projectId}`,{}, { 
+    return this.httpClient.post(`${this.baseUrl}/share/${projectId}`, {}, {
       params: {
         'credentials': credentials
       }
     });
   }
 
-  
+
 }
