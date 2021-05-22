@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from 'src/app/services/project/project.service';
 import {NgForm} from '@angular/forms';
-import {Project} from 'src/app/project';
+import {Project} from 'src/app/models/project';
 import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({

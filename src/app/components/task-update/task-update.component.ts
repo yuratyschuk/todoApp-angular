@@ -2,7 +2,7 @@ import {Component, OnInit, Inject} from '@angular/core';
 import {TaskService} from 'src/app/services/task/task.service';
 import {NgForm} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Task} from 'src/app/task';
+import {Task} from 'src/app/models/task';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import * as moment from 'moment';
 

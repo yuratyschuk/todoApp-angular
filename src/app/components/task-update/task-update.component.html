@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Update</h2>
+<h2 style="color: white" mat-dialog-title>Update</h2>
 <form #updateTodo="ngForm" (ngSubmit)="onSubmit(updateTodo)" novalidate>
   <mat-dialog-content>
     <label>Title </label>
@@ -8,10 +8,10 @@
     <input type="text" name="description" class="form-control" placeholder="Enter description"
            [ngModel]="task.description" required ngModel/><br>
     <label>Finish date </label>
-    <input type="hidden" name="createDate" class="form-control" [ngModel]="task.createDate | date:'dd-MM-yyyy HH:ss'"
+    <input type="hidden" name="createDate" class="form-control" [ngModel]="task.createDate | date:'dd-MM-yyyy HH:mm'"
 
            (ngModelChange)="task.createDate = $event" required ngModel/><br>
-    <input type="hidden" name="finishDate" [ngModel]="task.finishDate | date: 'dd-MM-yyyy HH:ss'" required ngModel>
+    <input type="hidden" name="finishDate" [ngModel]="task.finishDate | date: 'dd-MM-yyyy HH:mm'" required ngModel>
 
     <input type="hidden" name="priority" class="form-control" [ngModel]="task.priority"/>
     <input type="hidden" name="active" class="form-control" [ngModel]="task.active"/>

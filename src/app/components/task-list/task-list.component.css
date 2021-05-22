@@ -32,7 +32,7 @@ thead th {
 }
 
 .fa-plus {
-    color: grey;
+    color: white;
 }
 
 .fa-plus:hover {
@@ -75,7 +75,7 @@ table td:nth-child(3):hover {
     width: 80%;
     height: 50px;
     font-size: 14px;
-    color: #818181;
+    color: white;
 }
 
 .form-control:focus {
@@ -83,7 +83,7 @@ table td:nth-child(3):hover {
 }
 
 .form-control::placeholder {
-    color: #818181;
+    color: white;
     font-size: 14px;
 }
 
@@ -142,6 +142,7 @@ table td:nth-child(3):hover {
 }
 
 .fa-flag {
+    margin-right: 10px;
     margin-left: 10px
 }
 
@@ -166,4 +167,16 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+::ng-deep .test {
+  border: white 1px solid;
+  background-color: black;
+}
+span {
+  color: white;
+}
+
+.change-project-button {
+  color: white;
 }

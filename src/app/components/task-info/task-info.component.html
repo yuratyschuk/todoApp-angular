@@ -1,12 +1,11 @@
 <body>
-    <table class="table">
-        <tbody>
-        <tr>
-        <td><i [ngClass]="task.active ? 'fa fa-circle-o' : 'fa fa-check'" aria-hidden="true" (click)="changeStatus(task.id)"></i></td>
-        <td [ngClass]="task.active ? 'normal' : 'line'">{{task.title}}</td>
-      </tr>
-    </tbody>
-    </table>
+  <div class="header">
+    <p>
+      <i [ngClass]="task.active ? 'fa fa-circle-o' : 'fa fa-check'" aria-hidden="true" (click)="changeStatus(task.id)"></i>
+      <label class="title-header">{{task.title}} </label>
+    </p>
+  </div>
+
 
     <p *ngIf="task.finishDate !== null">Finish date: {{task.finishDate}}</p>
     <p *ngIf="task.description !== null">Description: {{task.description}}</p>

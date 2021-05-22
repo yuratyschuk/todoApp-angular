@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
-import {Project} from 'src/app/project';
+import {Project} from 'src/app/models/project';
 import {TaskService} from 'src/app/services/task/task.service';
-import {Task} from 'src/app/task';
+import {Task} from 'src/app/models/task';
 import {ProjectService} from 'src/app/services/project/project.service';
 import {SharedService} from 'src/app/services/sharedService/shared.service';
 import {Subscription} from 'rxjs';
@@ -103,7 +103,7 @@ export class TaskListComponent implements OnInit {
     if (this.matDialog.openDialogs.length === 0) {
       this.matDialog.open(TaskUpdateComponent, {
         width: '600px',
-        height: '600px',
+        height: '400px',
         autoFocus: true,
         panelClass: 'mat-dialog-background',
         data: {
@@ -124,7 +124,7 @@ export class TaskListComponent implements OnInit {
       this.matDialog.open(TaskInfoComponent, {
         autoFocus: true,
         width: '600px',
-        height: '600px',
+        height: '500px',
         panelClass: 'mat-dialog-background',
         data: {
           projectId: this.projectId,
@@ -139,7 +139,7 @@ export class TaskListComponent implements OnInit {
       this.matDialog.open(ProjectShareComponent, {
         autoFocus: true,
         width: '600px',
-        height: '600px',
+        height: '200px',
         panelClass: 'mat-dialog-background',
         data: {
           projectId: this.projectId,

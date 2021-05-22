@@ -1,28 +1,28 @@
-form label{ 
+form label{
  font-size: 20px;
  color: white;
 }
 
-.form-control { 
-    background-color: black; 
+.form-control {
+    background-color: black;
     color: #818181;
     font-size: 15px;
 }
 
-.form-control:focus { 
+.form-control:focus {
     background-color: black;
 }
 
-.form-control::placeholder { 
+.form-control::placeholder {
     font-size: 15px;
 }
 
-.btn-orange { 
+.btn-orange {
     background-color: #a1320d;
     color: #818181;
     font-size: 15px;
   }
-  
+
   .btn-orange:hover {
       color:white;
   }
@@ -32,39 +32,38 @@ form label{
     -webkit-text-fill-color: #818181;
   }
 
-  
+
 .cancel {
     position: relative;
     float: right;
-    margin-left: 10px;
-    margin-top: 3px;
+    margin-left: auto;
     color: #818181;
     font-size: 15px;
 
   }
 
-  .cancel:hover { 
+  .cancel:hover {
     text-decoration: underline;
     text-decoration-color: white;
     color:white;
-    
+
   }
-  
+
 
   input {
-    background-color: black; 
+    background-color: black;
     color: white
 }
 
-input::placeholder { 
+input::placeholder {
     color: #818181;
 }
 
-mat-datepicker-toggle { 
+mat-datepicker-toggle {
     color: white;
 
 }
 
-mat-datepicker { 
+mat-datepicker {
     color: white;
 }

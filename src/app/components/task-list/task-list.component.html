@@ -36,7 +36,7 @@
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_horiz</mat-icon>
           </button>
-          <mat-menu #menu="matMenu">
+          <mat-menu class="test" #menu="matMenu">
             <button mat-menu-item (click)="copyTask(task)">
               <mat-icon>content_copy</mat-icon>
               <span>Copy</span>
@@ -55,25 +55,25 @@
             </button>
           </mat-menu>
 
-          <mat-menu #projects="matMenu" >
+          <mat-menu class="test" #projects="matMenu" >
               <ul *ngFor="let project of projectList">
                 <li *ngIf="project.id !== currentProject.id">
-                  <button mat-menu-item (click)="moveTaskToAnotherProject(task, project.id)">
+                  <button class="change-project-button" mat-menu-item (click)="moveTaskToAnotherProject(task, project.id)">
                     {{project.name}}
                   </button>
                 </li>
               </ul>
           </mat-menu>
 
-          <mat-menu #priorities="matMenu">
+          <mat-menu class="test" #priorities="matMenu">
                                 <span mat-menu-item (click)="setPriority(0, task.id)"><i
-                                  class="fa fa-flag fa-2x transpatent"></i>None
+                                  class="fa fa-flag fa-1x transpatent"></i>None
                   priority</span>
-            <span mat-menu-item (click)="setPriority(1, task.id)"><i class="fa fa-flag fa-2x yellow"></i>Not
+            <span mat-menu-item (click)="setPriority(1, task.id)"><i class="fa fa-flag fa-1x yellow"></i>Not
                   essential</span>
             <span mat-menu-item (click)="setPriority(2, task.id)"> <i
-              class="fa fa-flag fa-2x blue"></i>Essential</span>
-            <span mat-menu-item (click)="setPriority(3, task.id)"><i class="fa fa-flag fa-2x red"></i>Very
+              class="fa fa-flag fa-1x blue"></i>Essential</span>
+            <span mat-menu-item (click)="setPriority(3, task.id)"><i class="fa fa-flag fa-1x red"></i>Very
                   essential</span>
           </mat-menu>
         </td>

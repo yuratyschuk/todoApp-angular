@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ProjectService} from 'src/app/services/project/project.service';
-import {Project} from 'src/app/project';
+import {Project} from 'src/app/models/project';
 import {TaskListComponent} from '../task-list/task-list.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {NgModel, NgForm} from '@angular/forms';
@@ -51,13 +51,13 @@ export class ProjectListComponent implements OnInit {
     if (this.matDialog.openDialogs.length === 0) {
       this.matDialog.open(ProjectSaveComponent, {
         autoFocus: true,
-        width: '200px',
+        width: '600px',
         height: '200px',
         panelClass: 'mat-dialog-background'
       }).afterClosed().subscribe(
         data => {
-          if(data !== '') {
-              this.projects.push(data);
+          if (data) {
+            this.projects.push(data);
           }
         }
       );

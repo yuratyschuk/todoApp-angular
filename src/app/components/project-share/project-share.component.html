@@ -1,5 +1,15 @@
-<h2>Share your project</h2>
 
-<input type="text" name="credentials" placeholder="Enter username or email" required [(ngModel)]="credentials" />
 
-<button type="submit" (click)="onSubmit()">Submit</button>
+<h2 style="color: white" mat-dialog-title>Share your project</h2>
+
+<div class="add-project-form">
+  <form>
+    <mat-dialog-content>
+      <input type="text" name="credentials" class="form-control" placeholder="Enter username or email" required [(ngModel)]="credentials" />
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button class="btn btn-orange" (click)="onSubmit()">Share</button>
+      <div class="cancel" mat-dialog-close>Close</div>
+    </mat-dialog-actions>
+  </form>
+</div>

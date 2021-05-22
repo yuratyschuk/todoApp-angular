@@ -23,7 +23,7 @@ import {ProjectSaveComponent} from './components/project-save/project-save.compo
 import {TaskInfoComponent} from './components/task-info/task-info.component';
 import {MAT_DATE_LOCALE} from '@angular/material/core';
 import {ProjectShareComponent} from './components/project-share/project-share.component';
-import {ChangeStatusDirective} from './directives/task/change-status.directive';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import {ChangeStatusDirective} from './directives/task/change-status.directive';
     ProjectSaveComponent,
     TaskInfoComponent,
     ProjectShareComponent,
-    ChangeStatusDirective
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

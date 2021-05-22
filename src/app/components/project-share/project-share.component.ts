@@ -21,11 +21,11 @@ export class ProjectShareComponent implements OnInit {
   }
 
 
-  onSubmit() { 
+  onSubmit() {
     console.log(this.credentials);
-    
-    this.projectService.share(this.credentials, this.data.projectId).subscribe ( 
-      data => { 
+
+    this.projectService.share(this.credentials, this.data.projectId).subscribe (
+      data => {
         console.log(data);
       }
     ); error => console.log(error);
