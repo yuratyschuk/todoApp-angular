@@ -1,23 +1,48 @@
-
 <html>
 <head>
-  <title>Login</title>
+  <title>Register</title>
 </head>
 <body>
 <div class="form">
-  <h2>Login</h2>
+  <h2>Register</h2>
   <div class="input">
-    <div class="inputBox">
-      <label>Username</label>
-      <input type="text" name="username" [(ngModel)]="username" placeholder="Enter username">
-    </div>
-    <div class="inputBox">
-      <label>Password</label>
-      <input type="password" name="password" [(ngModel)]="password" placeholder="Enter password">
-    </div>
-    <div class="inputBox">
-      <input type="button" (click)=handleAuthLogin() value="Sign in">
-    </div>
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && handleRegister()" novalidate class="feedback-form">
+      <div class="inputBox">
+        <label>Username</label>
+        <input type="text" id="username" class="form-control" name="username" placeholder="Enter username" [(ngModel)]="model.username" #username="ngModel" [ngClass]="{'is-invalid': f.submitted && username.invalid}" required>
+        <div *ngIf="f.submitted && username.invalid" class="invalid-input">
+          <!-- individual validation errors -->
+          <div *ngIf="username.errors?.required">Field is required</div>
+        </div>
+      </div>
+      <div class="inputBox">
+        <label>Email</label>
+        <input type="email" name="email" [(ngModel)]="model.email" placeholder="Enter email"
+               #email="ngModel"
+               [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+               required email/>
+        <!-- input validation group -->
+        <div *ngIf="f.submitted && email.invalid" class="invalid-input">
+          <!-- individual validation errors -->
+          <div *ngIf="email.errors?.required">Field is required</div>
+          <div *ngIf="email.errors?.email">Field is not a valid email</div>
+        </div>
+      </div>
+      <div class="inputBox">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="model.password" placeholder="Enter password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }"
+               required minlength="4">
+      </div>
+      <div *ngIf="f.submitted && password.invalid" class="invalid-input">
+        <!-- individual validation errors -->
+        <div *ngIf="password.errors?.required">Field is required</div>
+        <div *ngIf="password.errors?.minlength">Password must be more than 4 characters</div>
+      </div>
+      <div class="inputBox">
+        <input type="submit" value="Sign up" />
+      </div>
+
+    </form>
   </div>
 </div>
 </body>

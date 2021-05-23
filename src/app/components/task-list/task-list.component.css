@@ -35,8 +35,17 @@ thead th {
     color: white;
 }
 
-.fa-plus:hover {
+.fa-minus {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.fa-plus:hover  {
     color: red;
+}
+
+.fa-minus:hover {
+  color: red
 }
 
 table td {

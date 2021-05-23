@@ -2,5 +2,6 @@
     <span>ToDo</span>
     <span class="example-spacer"></span>
     <span><a routerLink="/login" class="nav-link" *ngIf="!authenticationService.isUserLoggedIn()">Login</a></span>
+    <span><a routerLink="/register" class="nav-link" *ngIf="!authenticationService.isUserLoggedIn()">Register</a></span>
     <span><a routerLink="/logout" class="nav-link" *ngIf="authenticationService.isUserLoggedIn()">Logout</a></span>
 </mat-toolbar>

@@ -15,7 +15,7 @@ export class TaskUpdateComponent implements OnInit {
 
   task: Task;
   taskId: number;
-  currentDate: Date;
+  currentDate: Date = new Date();
 
   constructor(private taskService: TaskService,
               @Inject(MAT_DIALOG_DATA) public data: any, private matDialogRef: MatDialogRef<TaskUpdateComponent>) {
@@ -44,5 +44,9 @@ export class TaskUpdateComponent implements OnInit {
 
   addEvent(event: MatDatepickerInputEvent<Date>) {
     this.task.finishDate = moment(event.value).format('DD-MM-yyyy HH:mm');
+  }
+
+  convertDate(dateToConvert: string) {
+    return moment(dateToConvert, 'DD-MM-yyyy HH:mm').format('DD-MM-yyyy');
   }
 }

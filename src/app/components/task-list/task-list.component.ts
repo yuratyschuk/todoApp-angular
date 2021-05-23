@@ -158,12 +158,8 @@ export class TaskListComponent implements OnInit {
     error => console.log(error);
   }
 
-  createTaskShowInput() {
-    this.showInputToCreateTask = true;
-  }
-
-  changeTaskShowInput() {
-    this.showInputToCreateTask = false;
+  showOrHideTaskCreateInput() {
+    this.showInputToCreateTask = !this.showInputToCreateTask;
   }
 
   setPriority(priority: number, taskId: number) {
@@ -171,7 +167,6 @@ export class TaskListComponent implements OnInit {
       data => {
         const currentTask = this.tasks.find(task => task.id === taskId);
         currentTask.priority = priority;
-        console.log(data);
       }
     );
     error => console.log(error);
@@ -179,7 +174,6 @@ export class TaskListComponent implements OnInit {
   }
 
   copyTask(task: Task) {
-    task.id = null;
     this.taskService.save(task, this.projectId).subscribe(
       data => {
         console.log(data);

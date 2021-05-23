@@ -11,7 +11,7 @@
     <input type="hidden" name="createDate" class="form-control" [ngModel]="task.createDate | date:'dd-MM-yyyy HH:mm'"
 
            (ngModelChange)="task.createDate = $event" required ngModel/><br>
-    <input type="hidden" name="finishDate" [ngModel]="task.finishDate | date: 'dd-MM-yyyy HH:mm'" required ngModel>
+    <input type="hidden" name="finishDate" [ngModel]="task.finishDate" required ngModel>
 
     <input type="hidden" name="priority" class="form-control" [ngModel]="task.priority"/>
     <input type="hidden" name="active" class="form-control" [ngModel]="task.active"/>

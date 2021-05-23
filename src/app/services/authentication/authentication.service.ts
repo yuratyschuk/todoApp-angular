@@ -32,6 +32,16 @@ export class AuthenticationService {
       );
   }
 
+  register(user: User) {
+
+    return this.http.post<any>(
+      `${this.baseUrl}/users/register`, {
+        username: user.username,
+        password: user.password,
+        email: user.email
+      });
+  }
+
   getAuthenticatedUser() {
     return sessionStorage.getItem(AUTHENTICATED_USER);
   }

@@ -15,7 +15,7 @@ export class TaskInfoComponent implements OnInit {
 
   task: Task;
   isAddDescriptionFieldShown: boolean = false;
-  currentDate: Date;
+  currentDate: Date = new Date();
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public taskService: TaskService) {
@@ -31,8 +31,6 @@ export class TaskInfoComponent implements OnInit {
     );
     error => console.log(error);
 
-    this.currentDate = new Date();
-    console.log(this.currentDate);
   }
 
   changeStatus(taskId: number) {
@@ -50,11 +48,7 @@ export class TaskInfoComponent implements OnInit {
   }
 
   showForm() {
-    this.isAddDescriptionFieldShown = true;
-  }
-
-  hideForm() {
-    this.isAddDescriptionFieldShown = false;
+    this.isAddDescriptionFieldShown = !this.isAddDescriptionFieldShown;
   }
 
   addDescription(toDo: NgForm) {
@@ -83,5 +77,9 @@ export class TaskInfoComponent implements OnInit {
         console.log(data);
       }
     ); error => console.log(error);
+  }
+
+  convertDate(dateToConvert: string) {
+    return moment(dateToConvert, 'DD-MM-yyyy HH:ss').format('DD-MM-yyyy');
   }
 }

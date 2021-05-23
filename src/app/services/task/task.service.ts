@@ -29,7 +29,7 @@ export class TaskService {
     return this.http.put(`${this.baseUrl}/active/${taskId}`, {});
   }
 
-  save(task: any, projectId: number) :Observable<any>{
+  save(task: any, projectId: number): Observable<any>{
     return this.http.post(`${this.baseUrl}/save/${projectId}`, task);
   }
 

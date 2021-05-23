@@ -104,9 +104,23 @@ textarea::placeholder {
       color: white;
   }
 
+ .date-finish {
+   font-size: 12px;
+ }
+
+.fa-minus {
+  color: grey;
+  margin-bottom: 10px;
+}
+
+.fa-minus:hover  {
+  color: red;
+}
+
   input {
       background-color: black;
-      color: white
+      color: white;
+    font-size: 16px;
   }
 
   input::placeholder {

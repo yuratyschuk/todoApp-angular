@@ -61,7 +61,7 @@ body {
     padding: 5px 15px;
     color: #888;
     font-size: 18px;
-    color: #03a9f4;
+    color: grey;
     box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.1), inset 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
@@ -71,7 +71,7 @@ body {
 }
 
 .form .input .inputBox input[type="button"]:active {
-    color: #006c9c;
+    color: grey;
     margin-top: 20px;
     box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.1), inset 2px 2px 6px rgba(0, 0, 0, 0.8);
 }

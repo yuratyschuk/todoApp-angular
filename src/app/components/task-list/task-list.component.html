@@ -80,14 +80,14 @@
       </tr>
       </tbody>
     </table>
+    <i class="fa fa-minus fa-2x" (click)="showOrHideTaskCreateInput()" *ngIf="showInputToCreateTask"> Add task</i>
     <div *ngIf="showInputToCreateTask">
       <form #toDo="ngForm" (ngSubmit)="saveTask(toDo)" novalidate>
         <input type="text" class="form-control" name="title" placeholder="Enter title" autofocus required ngModel><br>
         <button class="btn btn-orange">Create</button>
-        <div class="cancel" (click)="changeTaskShowInput()">Cancel</div>
       </form>
     </div>
-    <i class="fa fa-plus fa-2x" (click)="createTaskShowInput()" *ngIf="!showInputToCreateTask && tasks !== undefined">
+    <i class="fa fa-plus fa-2x" (click)="showOrHideTaskCreateInput()" *ngIf="!showInputToCreateTask && tasks !== undefined">
       Add task</i>
   </article>
 </section>

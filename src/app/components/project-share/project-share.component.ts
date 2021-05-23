@@ -27,6 +27,7 @@ export class ProjectShareComponent implements OnInit {
     this.projectService.share(this.credentials, this.data.projectId).subscribe (
       data => {
         console.log(data);
+        this.matDialogRef.close();
       }
     ); error => console.log(error);
   }

@@ -7,11 +7,11 @@
   </div>
 
 
-    <p *ngIf="task.finishDate !== null">Finish date: {{task.finishDate}}</p>
+    <p *ngIf="task.finishDate !== null">Finish date: {{ convertDate(task.finishDate) }}</p>
     <p *ngIf="task.description !== null">Description: {{task.description}}</p>
     <p>Priority: {{task.priority}}</p>
     <mat-form-field appearance="outline">
-      <input matInput [matDatepicker]="picker" placeholder="Choose another finish date"
+        <input class="date-finish" matInput [matDatepicker]="picker" placeholder="Choose another finish date"
              [min]="currentDate" (dateInput)="addEvent($event)" (dateChange)="addEvent($event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -19,20 +19,17 @@
 
 
     <hr>
-
+  <i class="fa fa-minus fa-2x" (click)="showForm()" *ngIf="isAddDescriptionFieldShown" >
+    Change description
+  </i>
     <form #toDo="ngForm" *ngIf="isAddDescriptionFieldShown"  (ngSubmit)="addDescription(toDo)" novalidate>
-        <label>Enter description</label><br>
         <textarea  placeholder="Enter description" class="form-control" name="description" required ngModel></textarea>
         <input type="hidden" name="title" [ngModel]="task.title"/>
         <input type="hidden" name="createDate" [ngModel]="task.createDate | date: 'dd-MM-yyyy HH:mm'">
         <input type="hidden" name="finishDate" [ngModel]="task.finishDate | date: 'dd-MM-yyyy HH:mm'">
 
         <button class="btn btn-orange">Create</button>
-        <div class="cancel" (click)="hideForm()">Cancel</div>
     </form>
-  <i class="fa fa-plus fa-2x" (click)="showForm()" *ngIf="!isAddDescriptionFieldShown && task.description == null" >
-      Add description
-    </i>
 
     <i class="fa fa-plus fa-2x" (click)="showForm()" *ngIf="!isAddDescriptionFieldShown && task.description != null" >
         Change description
