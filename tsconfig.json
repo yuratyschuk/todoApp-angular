@@ -16,5 +16,9 @@
     {
       "path": "./e2e/tsconfig.json"
     }
-]
+
+],
+  "resolveJsonModule": true,
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true
 }

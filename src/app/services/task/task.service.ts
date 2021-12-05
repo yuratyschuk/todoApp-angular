@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Task} from 'src/app/models/task';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {AppConstants} from "../../models/appConstants";
+
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  private baseUrl = 'http://localhost:8080/tasks';
+  private baseUrl = AppConstants.API_BASE_URL + '/tasks';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getTaskByProjectId(projectId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/list/${projectId}`);
@@ -29,7 +31,7 @@ export class TaskService {
     return this.http.put(`${this.baseUrl}/active/${taskId}`, {});
   }
 
-  save(task: any, projectId: number): Observable<any>{
+  save(task: any, projectId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/save/${projectId}`, task);
   }
 

@@ -1,13 +1,14 @@
-import {Injectable, EventEmitter} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {AppConstants} from "../../models/appConstants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  private baseUrl = 'http://localhost:8080/projects';
+  private baseUrl = AppConstants.API_BASE_URL + '/projects';
 
   constructor(private httpClient: HttpClient) {
   }
